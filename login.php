@@ -3,7 +3,7 @@
     include('database.php');
     if(isset($_POST['login'])) {
         if(isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
+            $username = mysqli_escape_real_string($_POST['username'];
             $password = hash('sha256', $_POST['password']);
 
             $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
@@ -21,7 +21,7 @@
                 $_SESSION["uuid"] = $data["uuid"];
                 $_SESSION["email"] = $data["email"];
                 $_SESSION["ipaddress"] = $data["ipaddress"];
-                
+
                 echo "<p>Erfolgreich angemeldet!</p>";
                 echo "<p>Welcome ".$_SESSION["username"]."!</p>";
 
