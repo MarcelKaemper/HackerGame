@@ -8,8 +8,6 @@
             echo "UUID: ".$_SESSION["uuid"]."<br />";
             echo "IP-Address: ".$_SESSION["ipaddress"]."<br />";
             echo "Email-Address: ".$_SESSION["email"];
-
-            
         }
     }
 ?>

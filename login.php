@@ -17,22 +17,13 @@
 
             while($data = mysqli_fetch_array($db_erg, MYSQLI_ASSOC)) {
                 $_SESSION["loggedin"] = true;
-                $data_username = $data["username"];
-                $data_uuid = $data["uuid"];
-                $data_email = $data["email"];
-                $data_ipaddress = $data["ipaddress"];
-
-                $_SESSION["username"] = $data_username;
-                $_SESSION["uuid"] = $data_uuid;
-                $_SESSION["email"] = $data_email;
-                $_SESSION["ipaddress"] = $data_ipaddress;
+                $_SESSION["username"] = $data["username"];
+                $_SESSION["uuid"] = $data["uuid"];
+                $_SESSION["email"] = $data["email"];
+                $_SESSION["ipaddress"] = $data["ipaddress"];
 
                 echo "<p>Erfolgreich angemeldet!</p>";
                 echo "<p>Welcome ".$_SESSION["username"]."!</p>";
-
-                //echo "<p>UUID: ".$data["uuid"]."</p>";
-                //echo "<p>Username: ".$data["username"]."</p>";
-                //echo "<p>IP-Address: ".$data["ipaddress"]."</p>";
 
                 echo "<script type=\"text/javascript\">
                 window.setTimeout(function() {

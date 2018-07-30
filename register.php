@@ -2,7 +2,7 @@
     include('database.php');
     if(isset($_POST['register'])) {
         if(isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
+            $username = $_POST['username']);
             $password = hash('sha256', $_POST['password']);
             $email = $_POST['email'];
             $uuid = createUUID();
