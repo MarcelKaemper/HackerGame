@@ -1,9 +1,7 @@
 body {
-    /* background-color: #cccccc; */
     font-family: 'Josefin Slab', serif;
 	font-size: 100%;
 	background-color: #f7f7f7;
-	/* background: linear-gradient(to bottom, rgba(150,150,150,0.2) 0%,rgba(150,150,150,0.2) 100%), url(background.jpg) repeat 0 0; */
 }
 #title {
 	margin-left: 45px;
