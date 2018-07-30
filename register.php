@@ -2,9 +2,9 @@
     include('database.php');
     if(isset($_POST['register'])) {
         if(isset($_POST['username']) && isset($_POST['password'])) {
-            $username = $_POST['username'];
-            $password = hash('sha256', $_POST['password']);
-            $email = $_POST['email'];
+            $username = mysqli_real_escape_string($_POST['username']);
+            $password = hash('sha256', mysqli_real_escape_string($_POST['password']));
+            $email = mysqli_real_escape_string($_POST['email']);
             $uuid = createUUID();
             $ipaddress = createIPAddress();
 
