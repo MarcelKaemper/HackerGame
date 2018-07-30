@@ -9,7 +9,10 @@
             } else {
                 $content = "home";
             }
+
+            echo "<div id=\"game_content\">";
             include("game/content.php");
+            echo "</div>";
         }
     }
 ?>

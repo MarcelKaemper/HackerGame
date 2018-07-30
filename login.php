@@ -34,7 +34,7 @@
                     echo "<script type=\"text/javascript\">
                     window.setTimeout(function() {
                     window.location.href='index.php?page=game&content=interface';
-                    }, 5000);
+                    }, 1000);
                     </script>";
                 }
 
