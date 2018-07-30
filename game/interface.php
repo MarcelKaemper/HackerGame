@@ -16,14 +16,15 @@
     echo generateIPv6();
     function generateIPv6() {
         $charset = "abcdef0123456789";
-        $uuid = "2001:0db8:0001:";
-        for($i = 0; $i < 5; $i++) {
+        $uuid = "2001:0db8:";
+        for($i = 0; $i < 6; $i++) {
             $x = 0;
-            while($x < 4) {
+            for($x = 0; $x < 4; $x++) {
                 $uuid .= $charset[rand(0, strlen($charset)-1)];
-                $x++;
             }
-            echo ":";
+            if($i != 5) {
+                $uuid .= ":";
+            }
         }
         return $uuid;
     }
