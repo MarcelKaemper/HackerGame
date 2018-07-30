@@ -8,13 +8,13 @@
 
     echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
 
+    /*
     echo "<br />";
     echo "<br />";
     echo "<br />";
-
+    
     echo generateIPv6();
-
-    /*function generateIPv6() {
+    function generateIPv6() {
         $charset = "abcdef0123456789";
         $uuid = "2001:0db8:0001:";
         for($i = 0; $i < 5; $i++) {
@@ -26,5 +26,6 @@
             echo ":";
         }
         return $uuid;
-    }*/
+    }
+    */
 ?>
