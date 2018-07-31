@@ -1,32 +1,38 @@
 <?php
-    //echo "Username: ".$_SESSION["username"]."<br />";
-    //echo "UUID: ".$_SESSION["uuid"]."<br />";
-    //echo "IP-Address: ".$_SESSION["ipaddress"]."<br />";
-    //echo "Email-Address: ".$_SESSION["email"]."<br />";
     echo "<p>Username: ".$_SESSION["username"]."</p>";
+    //$ipv4 = replicateIPv4($_SESSION["ipaddress_json"]);
+    //$ipv6 = replicateIPv6($_SESSION["ipaddress_json"]);
+    //echo "<p>IPv4: ".$ipv4."</p>";
+    //echo "<p>IPv6: ".$ipv6."</p>";
     echo "<p>IP: ".$_SESSION["ipaddress"]."</p>";
+    echo "<p>Money: €".$_SESSION["money"]."</p>";
+    echo "<br />";
 
     echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
 
-    /*
-    echo "<br />";
-    echo "<br />";
-    echo "<br />";
-    
-    echo generateIPv6();
-    function generateIPv6() {
-        $charset = "abcdef0123456789";
-        $uuid = "2001:0db8:";
-        for($i = 0; $i < 6; $i++) {
-            $x = 0;
-            for($x = 0; $x < 4; $x++) {
-                $uuid .= $charset[rand(0, strlen($charset)-1)];
-            }
-            if($i != 5) {
-                $uuid .= ":";
+    function replicateIPv4($session) {
+        $ipjson = json_decode($_SESSION["ipaddress_json"], true);
+        $ipv4_dis = "";
+        for($k = 0; $k < 4; $k++) {
+            if($k != 3) {
+                $ipv4_dis .= $ipjson["addresses"]["ipv4"][$k].".";
+            } else {
+                $ipv4_dis .= $ipjson["addresses"]["ipv4"][$k];
             }
         }
-        return $uuid;
+        return $ipv4_dis;
     }
-    */
+
+    function replicateIPv6($session) {
+        $ipjson = json_decode($_SESSION["ipaddress_json"], true);
+        $ipv6_dis = "";
+        for($k = 0; $k < 7; $k++) {
+            if($k != 6) {
+                $ipv6_dis .= $ipjson["addresses"]["ipv6"][$k].":";
+            } else {
+                $ipv6_dis .= $ipjson["addresses"]["ipv6"][$k];
+            }
+        }
+        return $ipv6_dis;
+    }
 ?>
