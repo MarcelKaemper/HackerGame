@@ -9,15 +9,16 @@
     } else {
         if(isset($_POST['register'])) {
             if(isset($_POST['username']) && isset($_POST['password'])) {
-                $username = $_POST['username'];
-                $password = hash('sha256', $_POST['password']);
-                $email = $_POST['email'];
+                $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
+                $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Auswahl fehlgeschlagen!</p>");
+
+                $username = mysqli_real_escape_string($db_link, $_POST['username']);
+                $password = mysqli_real_escape_string($db_link, $_POST['password']);
+                $password = hash('sha256', $password);
+                $email = mysqli_real_escape_string($db_link, $_POST['email']);
                 $uuid = createUUID();
                 $ipaddress = createIPAddress();
                 $money = 0;
-
-                $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
-                $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Auswahl fehlgeschlagen!</p>");
 
                 $sql = "INSERT INTO logins (uuid, email, username, password) VALUES ('".$uuid."', '".$email."', '".$username."', '".$password."');";
                 $sql2 = "INSERT INTO userdata (uuid, ipaddress, money) VALUES ('".$uuid."', '".$ipaddress."', '".$money."');";
@@ -41,17 +42,48 @@
                     $rows_email = mysqli_num_rows($db_erg_email);
 
                     if($rows_email == 0) {
-                        if(!$db_erg = mysqli_query($db_link, $sql)) {
-                            echo "<p>Error!</p>";
+                        $gencount_ipaddress = true;
+                        while($gencount_ipaddress) {
+                            if(!$db_erg_ipaddress = mysqli_query($db_link, $checkipaddress)) {
+                                echo "<p>Error!</p>";
+                            }
+        
+                            $rows_ipaddress = mysqli_num_rows($db_erg_ipaddress);
+                            if($rows_ipaddress != 0) {
+                                $ipaddress = createIPAddress();
+                            } else {
+                                $gencount_ipaddress = false;
+                            }
                         }
-
-                        if(!$db_erg2 = mysqli_query($db_link, $sql2)) {
-                            echo "<p>Error!</p>";
+                        if($gencount_ipaddress == false) {
+                            $gencount_uuid = true;
+                            while($gencount_uuid) {
+                                if(!$db_erg_uuid = mysqli_query($db_link, $checkuuid)) {
+                                    echo "<p>Error!</p>";
+                                }
+            
+                                $rows_uuid = mysqli_num_rows($db_erg_uuid);
+    
+                                if($rows_uuid != 0) {
+                                    $uuid = createUUID();
+                                } else {
+                                    $gencount_uuid = false;
+                                }
+                            }
+                            if($gencount_uuid == false) {
+                                if(!$db_erg = mysqli_query($db_link, $sql)) {
+                                    echo "<p>Error!</p>";
+                                }
+        
+                                if(!$db_erg2 = mysqli_query($db_link, $sql2)) {
+                                    echo "<p>Error!</p>";
+                                }
+        
+                                echo "<p>User sucessfully registered!</p>";
+        
+                                successData();
+                            }
                         }
-
-                        echo "<p>User sucessfully registered!</p>";
-
-                        successData();
                     } else {
                         echo "<p>Email already registered!</p>";
                         wrongData();

@@ -9,11 +9,12 @@
     } else {
         if(isset($_POST['login'])) {
             if(isset($_POST['username']) && isset($_POST['password'])) {
-                $username = $_POST['username'];
-                $password = hash('sha256', $_POST['password']);
-
                 $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
                 $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Auswahl fehlgeschlagen!</p>");
+
+                $username = mysqli_real_escape_string($db_link, $_POST['username']);
+                $password = mysqli_real_escape_string($db_link, $_POST['password']);
+                $password = hash('sha256', $password);
 
                 $logins = "SELECT uuid, username, email FROM logins WHERE username='".$username."' AND password='" . $password . "';";
 
