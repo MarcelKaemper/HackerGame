@@ -60,4 +60,19 @@
         }
         return $ipaddress;
     }
+
+    function generateIPv6() {
+        $charset = "abcdef0123456789";
+        $uuid = "2001:0db8:";
+        for($i = 0; $i < 6; $i++) {
+            $x = 0;
+            for($x = 0; $x < 4; $x++) {
+                $uuid .= $charset[rand(0, strlen($charset)-1)];
+            }
+            if($i != 5) {
+                $uuid .= ":";
+            }
+        }
+        return $uuid;
+    }
 ?>
