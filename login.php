@@ -18,7 +18,7 @@
                 $logins = "SELECT uuid, username, email FROM logins WHERE username='".$username."' AND password='" . $password . "';";
 
                 if(!$db_erg = mysqli_query($db_link, $logins)) {
-                    echo "<p>Fehler!</p>"; //.mysqli_error($db_link)."</p>";
+                    echo "<p>Error!</p>"; //.mysqli_error($db_link)."</p>";
                 }
 
                 $rows = mysqli_num_rows($db_erg);
@@ -33,7 +33,7 @@
 
                         $userdata = "SELECT uuid, ipaddress, money FROM userdata WHERE uuid='".$uuidst."';";
                         if(!$db_erg_userdata = mysqli_query($db_link, $userdata)) {
-                            echo "<p>Fehler!</p>"; //.mysqli_error($db_link)."</p>";
+                            echo "<p>Error!</p>"; //.mysqli_error($db_link)."</p>";
                         }
                         while($data_userdata = mysqli_fetch_array($db_erg_userdata, MYSQLI_ASSOC)) {
                             $_SESSION["ipaddress"] = $data_userdata["ipaddress"];
@@ -43,22 +43,14 @@
                         echo "<p>Erfolgreich angemeldet!</p>";
                         echo "<p>Welcome ".$_SESSION["username"]."!</p>";
     
-                        echo "<script type=\"text/javascript\">
-                            window.setTimeout(function() {
-                            window.location.href='index.php?page=game&content=interface';
-                            }, 1000);
-                            </script>";
+                        successData();
                         
                         //$_SESSION["ipaddress"] = $data["ipaddress"];
                         //$_SESSION["ipaddress_json"] = $data["ipaddress_json"];
                     }
                 } else {
                     echo "<p>Username or password wrong!</p>";
-                    echo "<form id=\"login_form\" action\"index.php?page=login\" method=\"POST\">
-                        <input class=\"form_input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
-                        <input class=\"form_input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
-                        <input class=\"form_submit\" name=\"login\" type=\"submit\" value=\"Login\">
-                        </form>";
+                    wrongData();
                 }
 
                 mysqli_close($db_link);
@@ -66,11 +58,23 @@
                 echo "<p>Something went wrong!</p>";
             }
         } else {
-            echo "<form id=\"login_form\" action\"index.php?page=login\" method=\"POST\">
+            wrongData();
+        }
+    }
+
+    function wrongData() {
+        echo "<form id=\"login_form\" action\"index.php?page=login\" method=\"POST\">
                 <input class=\"form_input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
                 <input class=\"form_input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
                 <input class=\"form_submit\" name=\"login\" type=\"submit\" value=\"Login\">
                 </form>";
-        }
+    }
+
+    function successData() {
+        echo "<script type=\"text/javascript\">
+            window.setTimeout(function() {
+            window.location.href='index.php?page=game&content=interface';
+            }, 1000);
+            </script>";
     }
 ?>
