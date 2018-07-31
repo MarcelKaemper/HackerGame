@@ -18,25 +18,77 @@
                 $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
                 $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Auswahl fehlgeschlagen!</p>");
 
+                $checkusername = "SELECT username FROM logins WHERE username='".$username."';";
+                $checkemail = "SELECT email FROM logins WHERE email='".$email."';";
+                $checkipaddress = "SELECT ipaddress FROM userdata WHERE ipaddress='".$ipaddress."';";
+                $checkuuid = "SELECT uuid FROM logins WHERE uuid='".$uuid."';";
+
                 $sql = "INSERT INTO logins (uuid, email, username, password, ipaddress) VALUES ('".$uuid."', '".$email."', '".$username."', '".$password."', '".$ipaddress."');";
 
-                if(!$db_erg = mysqli_query($db_link, $sql)) {
-                    echo "<p>Fehler: ".mysqli_error($db_link)."</p>";
+                if(!$db_erg = mysqli_query($db_link, $checkusername)) {
+                    echo "<p>Error: ".mysqli_error($db_link)."</p>";
+                }
+
+                $rows_username = mysqli_num_rows($db_erg);
+
+                if($rows_username == 0) {
+                    if(!$db_erg_email = mysqli_query($db_link, $checkemail)) {
+                        echo "<p>Error: ".mysqli_error($db_link)."</p>";
+                    }
+
+                    $rows_email = mysqli_num_rows($db_erg_email);
+
+                    if($rows_email == 0) {
+                        $gencount_ipaddress = true;
+                        while($gencount_ipaddress) {
+                            if(!$db_erg_ipaddress = mysqli_query($db_link, $checkipaddress)) {
+                                echo "<p>Error: ".mysqli_error($db_link)."</p>";
+                            }
+        
+                            $rows_ipaddress = mysqli_num_rows($db_erg_ipaddress);
+
+                            if($rows_ipaddress != 0) {
+                                $ipaddress = createIPAddress();
+                            }
+                        }
+
+                        if($gencount_ipaddress == false) {
+                            $gencount_uuid = true;
+                            while($gencount_uuid) {
+                                if(!$db_erg_uuid = mysqli_query($db_link, $checkuuid)) {
+                                    echo "<p>Error: ".mysqli_error($db_link)."</p>";
+                                }
+            
+                                $rows_uuid = mysqli_num_rows($db_erg_uuid);
+    
+                                if($rows_uuid != 0) {
+                                    $uuid = createUUID();
+                                }
+                            }
+
+                            if($gencount_uuid == false) {
+                                if(!$db_erg = mysqli_query($db_link, $sql)) {
+                                    echo "<p>Error: ".mysqli_error($db_link)."</p>";
+                                }
+
+                                echo "<p>User sucessfully registered!</p>";
+                            }
+                        }
+                    } else {
+                        echo "<p>Email already registered!</p>";
+                        wrongData();
+                    }
+                } else {
+                    echo "<p>Username already registered!</p>";
+                    wrongData();
                 }
 
                 mysqli_close($db_link);
-                
-                echo "<p>Benutzer wurde erfolgreich registriert!</p>";
             } else {
                 echo "<p>Something went wrong!</p>";
             }
         } else {
-            echo "<form id=\"register_form\" action=\"index.php?page=register\" method=\"POST\">
-                <input class=\"form_input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
-                <input class=\"form_input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
-                <input class=\"form_input\" name=\"email\" type=\"email\" placeholder=\"Email\"><br />
-                <input class=\"form_submit\" name=\"register\" type=\"submit\" value=\"Register\">
-                </form>";
+            wrongData();
         }
     }
 
@@ -74,5 +126,14 @@
             }
         }
         return $uuid;
+    }
+
+    function wrongData() {
+        echo "<form id=\"register_form\" action=\"index.php?page=register\" method=\"POST\">
+                <input class=\"form_input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
+                <input class=\"form_input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
+                <input class=\"form_input\" name=\"email\" type=\"email\" placeholder=\"Email\"><br />
+                <input class=\"form_submit\" name=\"register\" type=\"submit\" value=\"Register\">
+                </form>";
     }
 ?>
