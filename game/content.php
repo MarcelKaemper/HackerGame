@@ -1,11 +1,11 @@
 <?php
     switch($content) {
-        case "adminArea":
-            include('adminArea.php');
+        case "adminarea":
+            include('adminarea.php');
             break;
         case "interface":
         default:
-            include('game/interface.php');
+            include('interface.php');
             break;
     }
 ?>
