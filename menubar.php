@@ -8,6 +8,9 @@
                 //session_start();
                 if(isset($_SESSION["loggedin"])) {
                     if($_SESSION["loggedin"] == true) {
+                        if($_SESSION["uuid"] == "qd2GnLAuRlAdZTHx" || $_SESSION["uuid"] == "lMaC4qebaekNe6OD"){
+                            echo "<li><a href=\"index.php?page=adminArea&content=interface\"><span class=\"glyphicon glyphicon-th\"></span> Adminarea</a></li>";
+                        }
                         echo "<li><a href=\"index.php?page=game&content=interface\"><span class=\"glyphicon glyphicon-user\"></span> Game</a></li>";
                         echo "<li><a href=\"index.php?page=logout\"><span class=\"glyphicon glyphicon-log-in\"></span> Logout</a></li>";
                     } else {
