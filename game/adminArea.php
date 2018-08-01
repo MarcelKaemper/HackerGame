@@ -30,7 +30,7 @@
 </script>
 <?php
     include("database.php");
-    // Create connection
+    // Create connection 
     $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
     // Check connection
     if ($conn->connect_error) {
