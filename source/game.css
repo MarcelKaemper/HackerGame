@@ -1,4 +1,15 @@
 #game_content {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: left;
-    margin-left: 15px;
+    position: relative;
+}
+#game_info {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    text-align: left;
+    position: relative;
 }

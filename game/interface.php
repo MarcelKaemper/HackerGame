@@ -1,14 +1,14 @@
 <?php
-    echo "<p>Username: ".$_SESSION["username"]."</p>";
+    //echo "<p>Username: ".$_SESSION["username"]."</p>";
     //$ipv4 = replicateIPv4($_SESSION["ipaddress_json"]);
     //$ipv6 = replicateIPv6($_SESSION["ipaddress_json"]);
     //echo "<p>IPv4: ".$ipv4."</p>";
     //echo "<p>IPv6: ".$ipv6."</p>";
     echo "<p>IP: ".$_SESSION["ipaddress"]."</p>";
-    echo "<p>Money: €".$_SESSION["money"]."</p>";
-    echo "<br />";
+    //echo "<p>Money: €".$_SESSION["money"]."</p>";
+    //echo "<br />";
 
-    echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
+    //echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
 
     function replicateIPv4($session) {
         $ipjson = json_decode($_SESSION["ipaddress_json"], true);

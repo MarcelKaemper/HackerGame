@@ -36,9 +36,26 @@
 
             mysqli_close($db_link);
 
-            echo "<div id=\"game_content\">";
+            echo "<div class=\"container-fluid\">
+                <div class=\"row\">
+                <div class=\"col-sm-3\">
+                <div id=\"game_info\">";
+            echo "<p>Username: ".$_SESSION["username"]."</p>";
+            echo "<p>Money: €".$_SESSION["money"]."</p>";
+            echo "</div>
+                </div>
+                <div class=\"col-sm-9\">
+                <div id=\"game_content\">";
             include("game/content.php");
-            echo "</div>";
+            //echo "One of three colums";
+            echo "</div>
+                </div>
+                </div>
+                </div>";
+
+            //echo "<div id=\"game_content\">";
+            //include("game/content.php");
+            //echo "</div>";
         }
     }
 ?>
