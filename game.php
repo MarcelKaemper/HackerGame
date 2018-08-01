@@ -1,6 +1,4 @@
 <?php
-    session_start();
-    include('database.php');
     if(!isset($_SESSION["loggedin"])) {
         echo "<p>You are not logged in!</p>";
     } else {

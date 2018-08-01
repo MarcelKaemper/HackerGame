@@ -1,6 +1,4 @@
 <?php
-    session_start();
-    include('database.php');
     if(isset($_SESSION["loggedin"])) {
         if($_SESSION["loggedin"] == true) {
             echo "<p>You are already logged in!</p>";

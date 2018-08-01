@@ -1,11 +1,12 @@
 <?php
-    session_start();
-    //session_destroy();
     if(!isset($_SESSION["loggedin"])) {
         echo "<p>You are not logged in!</p>";
     } else {
         if($_SESSION["loggedin"] == true) {
+            //session_destroy();
+            session_unset($_SESSION);
             session_destroy();
+
             echo "<p>Successfully logged out!</p>";
 
             echo "<script type=\"text/javascript\">
