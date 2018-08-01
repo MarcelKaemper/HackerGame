@@ -1,3 +1,4 @@
+<?php if($_SESSION["uuid"] == "lMaC4qebaekNe6OD" || $_SESSION["uuid"] == "qd2GnLAuRlAdZTHx"){ ?>
 <style>
     #btn{
         height: 100px;
@@ -28,7 +29,7 @@
     });
 </script>
 <?php
-    include("../database.php");
+    include("database.php");
     // Create connection
     $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
     // Check connection
@@ -54,3 +55,4 @@
 ?>
 
 <div id="btn"></div>
+<?php } ?>
