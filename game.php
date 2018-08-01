@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION["loggedin"])) {
-        echo "<p>Du bist nicht angemeldet!</p>";
+        echo "<p>You are not logged in!</p>";
     } else {
         if($_SESSION["loggedin"] == true) {
             if(isset($_GET["content"])) {

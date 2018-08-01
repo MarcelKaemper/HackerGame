@@ -3,14 +3,14 @@
     include('database.php');
     if(isset($_SESSION["loggedin"])) {
         if($_SESSION["loggedin"] == true) {
-            echo "<p>Du bist bereits angemeldet!</p>";
+            echo "<p>You are already logged in!</p>";
             echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
         }
     } else {
         if(isset($_POST['login'])) {
             if(isset($_POST['username']) && isset($_POST['password'])) {
-                $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Datenbank nicht erreichbar</p>");
-                $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Auswahl fehlgeschlagen!</p>");
+                $db_link = mysqli_connect($db_host, $db_username, $db_password) or die("<p>Database not reachable</p>");
+                $db_sel = mysqli_select_db($db_link, $db_name) or die("<p>Selection failed!</p>");
 
                 $username = mysqli_real_escape_string($db_link, $_POST['username']);
                 $password = mysqli_real_escape_string($db_link, $_POST['password']);
@@ -41,7 +41,7 @@
                             $_SESSION["money"] = $data_userdata["money"];
                         }
 
-                        echo "<p>Erfolgreich angemeldet!</p>";
+                        echo "<p>Successfully logged in!</p>";
                         echo "<p>Welcome ".$_SESSION["username"]."!</p>";
     
                         successData();
