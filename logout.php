@@ -4,7 +4,6 @@
     } else {
         if($_SESSION["loggedin"] == true) {
             //session_destroy();
-            session_unset($_SESSION);
             session_destroy();
 
             echo "<p>Successfully logged out!</p>";
