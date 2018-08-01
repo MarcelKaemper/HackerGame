@@ -2,7 +2,7 @@
     if(isset($_SESSION["loggedin"])) {
         if($_SESSION["loggedin"] == true) {
             echo "<p>You are already logged in!</p>";
-            echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
+            //echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
         }
     } else {
         if(isset($_POST['register'])) {
