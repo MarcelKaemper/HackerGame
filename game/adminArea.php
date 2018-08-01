@@ -55,4 +55,8 @@
 ?>
 
 <div id="btn"></div>
-<?php } ?>
+<?php 
+} else {
+    echo "<h4 align='center'> Permission denied </h4>";
+}
+?>
