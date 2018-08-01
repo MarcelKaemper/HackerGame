@@ -18,13 +18,8 @@
                 $ipaddress = createIPAddress();
                 $money = 0;
 
-                $sql = "INSERT INTO logins (uuid, email, username, password) VALUES ('".$uuid."', '".$email."', '".$username."', '".$password."');";
-                $sql2 = "INSERT INTO userdata (uuid, ipaddress, money) VALUES ('".$uuid."', '".$ipaddress."', '".$money."');";
-
                 $checkusername = "SELECT username FROM logins WHERE username='".$username."';";
                 $checkemail = "SELECT email FROM logins WHERE email='".$email."';";
-                $checkipaddress = "SELECT ipaddress FROM userdata WHERE ipaddress='".$ipaddress."';";
-                $checkuuid = "SELECT uuid FROM logins WHERE uuid='".$uuid."';";
 
                 if(!$db_erg_username = mysqli_query($db_link, $checkusername)) {
                     echo "<p>Error!</p>";
@@ -42,6 +37,8 @@
                     if($rows_email == 0) {
                         $gencount_ipaddress = true;
                         while($gencount_ipaddress) {
+                            $checkipaddress = "SELECT ipaddress FROM userdata WHERE ipaddress='".$ipaddress."';";
+
                             if(!$db_erg_ipaddress = mysqli_query($db_link, $checkipaddress)) {
                                 echo "<p>Error!</p>";
                             }
@@ -56,6 +53,8 @@
                         if($gencount_ipaddress == false) {
                             $gencount_uuid = true;
                             while($gencount_uuid) {
+                                $checkuuid = "SELECT uuid FROM logins WHERE uuid='".$uuid."';";
+                                
                                 if(!$db_erg_uuid = mysqli_query($db_link, $checkuuid)) {
                                     echo "<p>Error!</p>";
                                 }
@@ -69,6 +68,9 @@
                                 }
                             }
                             if($gencount_uuid == false) {
+                                $sql = "INSERT INTO logins (uuid, email, username, password) VALUES ('".$uuid."', '".$email."', '".$username."', '".$password."');";
+                                $sql2 = "INSERT INTO userdata (uuid, ipaddress, money) VALUES ('".$uuid."', '".$ipaddress."', '".$money."');";
+
                                 if(!$db_erg = mysqli_query($db_link, $sql)) {
                                     echo "<p>Error!</p>";
                                 }
