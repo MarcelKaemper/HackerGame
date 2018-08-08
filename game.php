@@ -34,8 +34,6 @@
                 $_SESSION["username"] = $data2["username"];
             }
 
-            mysqli_close($db_link);
-
             echo "<div class=\"container-fluid\">
                 <div class=\"row\">
                 <div class=\"col-sm-3\">
@@ -53,6 +51,8 @@
                 </div>
                 </div>";
 
+            mysqli_close($db_link);
+            
             //echo "<div id=\"game_content\">";
             //include("game/content.php");
             //echo "</div>";
