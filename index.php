@@ -14,6 +14,7 @@
         <link href="source/main.css" rel="stylesheet">
         <link href="source/game.css" rel="stylesheet">
         <link href="source/font-joeslab.css" rel="stylesheet">
+        <link rel="shortcut icon" href="source/favicon.ico" />
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
