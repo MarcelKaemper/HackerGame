@@ -29,29 +29,21 @@
     });
 </script>
 <?php
-    include("database.php");
-    // Create connection 
-    $conn = new mysqli($db_host, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
 
-    $sql = "SELECT username FROM logins";
-    $result = $conn->query($sql);
+$sql = "SELECT username FROM logins;";
+$result = $db_link->query($sql);
 
-    if ($result->num_rows > 0) {
-        echo "<div id='container'>";
-        echo "<b><u>Registered users:<br></b></u>";
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            echo "Username: " . $row["username"]. "<br>";
-        }
-        echo "</div>";
-    } else {
-        echo "0 results";
+if ($result->num_rows > 0) {
+    echo "<div id='container'>";
+    echo "<b><u>Registered users:<br></b></u>";
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "Username: " . $row["username"]. "<br>";
     }
-    $conn->close();
+    echo "</div>";
+} else {
+    echo "0 results";
+}
 ?>
 
 <div id="btn"></div>
