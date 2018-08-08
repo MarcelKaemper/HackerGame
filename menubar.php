@@ -11,6 +11,7 @@
                         if($_SESSION["uuid"] == "qd2GnLAuRlAdZTHx" || $_SESSION["uuid"] == "lMaC4qebaekNe6OD"){
                             echo "<li><a href=\"index.php?page=game&content=adminarea\"><span class=\"glyphicon glyphicon-th\"></span> AdminArea</a></li>";
                         }
+                        echo "<li><a href=\"index.php?page=game&content=shop\"><span class=\"glyphicon glyphicon-shopping-cart\"></span> Shop</a></li>";
                         echo "<li><a href=\"index.php?page=game&content=interface\"><span class=\"glyphicon glyphicon-user\"></span> Game</a></li>";
                         echo "<li><a href=\"index.php?page=logout\"><span class=\"glyphicon glyphicon-log-in\"></span> Logout</a></li>";
                     } else {
