@@ -11,9 +11,9 @@
 <html>
     <head>
         <title>HackerGame</title>
-        <link href="source/main.css" rel="stylesheet">
-        <link href="source/game.css" rel="stylesheet">
-        <link href="source/font-joeslab.css" rel="stylesheet">
+        <link href="source/main.css" rel="stylesheet" type="text/css">
+        <link href="source/game.css" rel="stylesheet" type="text/css">
+        <link href="source/font-joeslab.css" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="source/favicon.ico" />
 
         <meta charset="utf-8">
