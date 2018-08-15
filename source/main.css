@@ -29,3 +29,25 @@ body {
 	-moz-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.15);
 	box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.15);
 }
+
+.box-style-input {
+    background: #F2F2F2;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    outline: none;
+    color: #737373;
+    letter-spacing: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.box-style-submit {
+    margin-top: 5px;
+    letter-spacing: 1px;
+    outline: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
