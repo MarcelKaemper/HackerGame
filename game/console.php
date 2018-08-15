@@ -31,16 +31,22 @@ clear ~ Clears the commandlog
                                 echo "<p>Error!</p>";
                             }
 
-                            while($data_scan = mysqli_fetch_array($db_erg_scan, MYSQLI_ASSOC)) {
-                                $scanned_data_ip = $data_scan["ipaddress"];
-                                $scanned_data_money = $data_scan["money"];
+                            $rows_scan = mysqli_num_rows($db_erg_scan);
+
+                            if($rows_scan > 0) {
+                                while($data_scan = mysqli_fetch_array($db_erg_scan, MYSQLI_ASSOC)) {
+                                    $scanned_data_ip = $data_scan["ipaddress"];
+                                    $scanned_data_money = $data_scan["money"];
+                                }
+    
+                                $_SESSION["command_log"] .= "IPAddress: ".$scanned_data_ip."\n";
+                                $_SESSION["command_log"] .= "Money: €".$scanned_data_money."\n";
+    
+                                $scanned_data_ip = "";
+                                $scanned_data_money = "";
+                            } else {
+                                $_SESSION["command_log"] .= "Target not found!\n";
                             }
-
-                            $_SESSION["command_log"] .= "IPAddress: ".$scanned_data_ip."\n";
-                            $_SESSION["command_log"] .= "Money: €".$scanned_data_money."\n";
-
-                            $scanned_data_ip = "";
-                            $scanned_data_money = "";
                         } else {
                             $_SESSION["command_log"] .= "You need to enter a valid ipaddress!\n";
                         }
@@ -105,23 +111,6 @@ clear ~ Clears the commandlog
         }
     }
 ?>
-<style type="text/css">
-    .hack_input {
-        background: #F2F2F2;
-        border: 1px solid #CCCCCC;
-        border-radius: 5px;
-        outline: none;
-        color: #737373;
-        letter-spacing: 1px;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    #commandlog {
-        resize: none;
-    }
-</style>
 <form action="index.php?page=game&content=console" method="post">
     <textarea class="hack_input" id="commandlog" name="commandlog" size=50 cols="75" rows="20" readonly autocomplete="off"><?php echo $_SESSION["command_log"]; ?></textarea><br />
     <input class="hack_input" type="text" name="command" size="73" required minlength="1" autofocus autocomplete="off">
