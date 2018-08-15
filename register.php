@@ -140,10 +140,10 @@
 
     function wrongData() {
         echo "<form id=\"register_form\" action=\"index.php?page=register\" method=\"POST\">
-                <input class=\"form_input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
-                <input class=\"form_input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
-                <input class=\"form_input\" name=\"email\" type=\"email\" placeholder=\"Email\"><br />
-                <input class=\"form_submit\" name=\"register\" type=\"submit\" value=\"Register\">
+                <input class=\"form_input box-style-input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
+                <input class=\"form_input box-style-input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
+                <input class=\"form_input box-style-input\" name=\"email\" type=\"email\" placeholder=\"Email\"><br />
+                <input class=\"form_submit box-style-submit\" name=\"register\" type=\"submit\" value=\"Register\">
                 </form>";
     }
 
