@@ -43,11 +43,18 @@ body {
     padding-bottom: 8px;
 }
 .box-style-submit {
-    margin-top: 5px;
+    margin-top: 8px;
     letter-spacing: 1px;
     outline: none;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+#register_form, #login_form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
