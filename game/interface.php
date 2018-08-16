@@ -4,9 +4,29 @@
     //$ipv6 = replicateIPv6($_SESSION["ipaddress_json"]);
     //echo "<p>IPv4: ".$ipv4."</p>";
     //echo "<p>IPv6: ".$ipv6."</p>";
-    echo "<p>IP: ".$_SESSION["ipaddress"]."</p>";
+    //echo "<p>IP: ".$_SESSION["ipaddress"]."</p>";
     //echo "<p>Money: €".$_SESSION["money"]."</p>";
     //echo "<br />";
+
+    echo "<h4>Newtwork</h4>";
+    echo "<table id=\"show_network\">";
+    echo "<tr>";
+    echo "<td>Connected to</td>";
+    echo "<td>Internet</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>IP Address</td>";
+    echo "<td>".$_SESSION["ipaddress"]."</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Gateway IP</td>";
+    echo "<td>N/A</td>";
+    echo "</tr>";
+    echo "<tr>";
+    echo "<td>Gateway Status</td>";
+    echo "<td>Offline</td>";
+    echo "</tr>";
+    echo "</table>";
 
     //echo "<p><a href=\"index.php?page=logout\">Logout</a></p>";
 

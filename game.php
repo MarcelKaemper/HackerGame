@@ -38,8 +38,25 @@
                 <div class=\"row\">
                 <div class=\"col-sm-3\">
                 <div id=\"game_info\">";
-            echo "<p>Username: ".$_SESSION["username"]."</p>";
-            echo "<p>Money: €".$_SESSION["money"]."</p>";
+            //echo "<p>Username: ".$_SESSION["username"]."</p>";
+            //echo "<p>Money: €".$_SESSION["money"]."</p>";
+
+            echo "<h4>Information</h4>";
+            echo "<table id=\"show_static_information\">";
+            echo "<tr>";
+            echo "<td>Time</td>";
+            echo "<td id=\"interface_curtime\"></td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>Username</td>";
+            echo "<td>".$_SESSION["username"]."</td>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<td>Money</td>";
+            echo "<td>€".$_SESSION["money"]."</td>";
+            echo "</tr>";
+            echo "</table>";
+
             echo "</div>
                 </div>
                 <div class=\"col-sm-9\">
@@ -59,3 +76,40 @@
         }
     }
 ?>
+<script type="text/javascript">
+    setInterval(function() {
+        var currentTime = new Date ( );    
+        var currentHours = currentTime.getHours ( );   
+        var currentMinutes = currentTime.getMinutes ( );   
+        var currentSeconds = currentTime.getSeconds ( );
+
+        currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;   
+        currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+
+        var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+
+        currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+        currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+
+        //var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+        var currentTimeString = currentHours + ":" + currentMinutes + " " + timeOfDay;
+
+        var currentDateDay = currentTime.getDate();
+        var currentDateMonth = currentTime.getMonth();
+        var currentDateYear = currentTime.getFullYear();
+
+        currentDateMonth = (currentDateMonth + 1);
+        if(currentDateMonth < 10) {
+            currentDateMonth = "0" + currentDateMonth;
+        }
+
+        if(currentDateDay < 10) {
+            currentDateDay = "0" + currentDateDay;
+        }
+
+        var currentDateString = currentDateYear + "/" + currentDateMonth + "/" + currentDateDay;
+
+        document.getElementById("interface_curtime").innerHTML = currentTimeString;
+        document.getElementById("interface_curtime").title = currentDateString;
+    }, 1000);
+</script>
