@@ -63,8 +63,8 @@
 
     function wrongData() {
         echo "<form id=\"login_form\" action\"index.php?page=login\" method=\"POST\">
-                <input class=\"form_input box-style-input\" name=\"username\" type=\"text\" placeholder=\"Username\"><br />
-                <input class=\"form_input box-style-input\" name=\"password\" type=\"password\" placeholder=\"Password\"><br />
+                <input class=\"form_input box-style-input\" name=\"username\" type=\"text\" placeholder=\"Username\" required><br />
+                <input class=\"form_input box-style-input\" name=\"password\" type=\"password\" placeholder=\"Password\" required><br />
                 <input class=\"form_submit box-style-submit\" name=\"login\" type=\"submit\" value=\"Login\">
                 </form>";
     }
